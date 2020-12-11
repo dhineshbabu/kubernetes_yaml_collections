@@ -1,0 +1,16 @@
+wordpressUsername: admin
+wordpressPassword: admin123
+service:
+  type: ClusterIP
+persistence:
+  enabled: false
+mariadb:
+  master:
+    persistence:
+      enabled: false
+ingress:
+  enabled: true
+  hostname: wordpress.52.15.219.198.xip.io
+metrics:
+  enabled: true
+# helm install -n wordpress -f values_wp.yaml wp1 bitnami/wordpress

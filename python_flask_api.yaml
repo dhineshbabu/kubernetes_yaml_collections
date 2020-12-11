@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pythonapp
+  labels:
+    app: pythonapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pythonapp
+  template:
+    metadata:
+      labels:
+        app: pythonapp
+    spec:
+      containers:
+      - name: pythonapp
+        image: dhineshbabu/simple_flask_gatling_api
+        ports:
+        - containerPort: 5000
+---
+apiVersion: v1
+metadata:
+  name: pythonapp-svc
+  labels:
+    app: pythonapp-svc
+spec:
+  type: ClusterIP
+  ports:
+  - port: 5000
+    targetPort: 5000
+    protocol: TCP
+    name: http
+  selector:
+    app: pythonapp
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: pythonapp-ingress
+spec:
+  rules:
+  - host: python.52.15.219.198.xip.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: pythonapp-svc
+          servicePort: http
+---

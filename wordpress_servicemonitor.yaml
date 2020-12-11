@@ -1,0 +1,20 @@
+---
+kind: ServiceMonitor
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: wordpress-sm
+  labels:
+    app: wordpress-sm
+    release: mon
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: wp2
+      app.kubernetes.io/name: wordpress
+  namespaceSelector:
+    matchNames:
+    - wordpress
+  endpoints:
+  - port: metrics
+    interval: 10s
+---

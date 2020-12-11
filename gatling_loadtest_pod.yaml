@@ -1,0 +1,13 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: gatlingscript
+  labels:
+    app: gatlingscript
+spec:
+  hostNetwork: true
+  containers:
+  - name: gatlingscript
+    image: dhineshbabu/gatlingtest
+	  command: ['sh', '-c', 'curl http://python.52.15.219.198.xip.io/api/v1/books && exit 1']
+  restartPolicy: Never

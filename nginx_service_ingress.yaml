@@ -1,0 +1,12 @@
+replicas: 2
+service:
+  type: ClusterIP
+persistence:
+  enabled: false
+mariadb:
+  master:
+    persistence:
+      enabled: false
+ingress:
+  enabled: true
+  hostname: web.52.15.219.198.xip.io

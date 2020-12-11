@@ -1,0 +1,15 @@
+prometheus:
+  prometheusSpec:
+    retention: 1h
+  ingress:
+    enabled: true
+    hosts: [prometheus.52.15.219.198.xip.io]
+alertmanager:
+  ingress:
+    enabled: true
+    hosts:  [alerts.52.15.219.198.xip.io]
+grafana:
+  ingress:
+    enabled: true
+    hosts: [grafana.52.15.219.198.xip.io]
+# Deployment: helm install -n monitoring -f values_mon.yaml mon stable/prometheus-operator
